@@ -2,18 +2,30 @@
 
 #include <iostream>
 
-int p = 1;
+using namespace std;
+
+
 class TASK
 {
 	int id;
 	int time;
 public:
+	TASK() { id = rand() % 100; time = (rand() % 15) + 1; }
+	TASK(int _Id, int _Time) { id = _Id; time = _Time; if (time <= 0) throw - 1; }
 	int GetId() { return id; }
 	int GetTime() { return time; }
 	void TimeStep() { time = time - 1; }
 	TASK &operator=(const TASK &b);
-	TASK() { id = p; p++; time = rand() % 5; }
-	TASK(int _Id, int _Time) { id = _Id; time = _Time; }
+	friend istream& operator >> (istream &in, TASK &v)
+	{
+			in >> v.id;
+		return in;
+	}
+	friend ostream& operator<<(ostream &out, const TASK &v)
+	{
+			out << "id: " << v.id << " time: " << v.time << ' ';
+		return out;
+	}
 };
 
 class TURN
@@ -21,7 +33,8 @@ class TURN
 	TASK *mem;
 	int size, top, end;
 public:
-	int GetSize() { return size; }
+	//int GetSize() { return size; }
+	TURN();
 	TURN(int _size);
 	bool isempty();
 	bool isfull();
@@ -29,18 +42,11 @@ public:
 	TASK pop();
 };
 
-class CORE
-{
-	TASK c1;
-	TASK c2;
-public:
-	void step(TURN t);
-};
-
 // TASK;
 
 TASK &TASK:: operator=(const TASK &b)
 {
+	if (this == &b) return *this;
 	id = b.id;
 	time = b.time;
 	return *this;
@@ -48,8 +54,18 @@ TASK &TASK:: operator=(const TASK &b)
 
 // TURN;
 
+TURN::TURN()
+{
+	size = 10;
+	mem = new TASK[size];
+	end = size - 1;
+	top = 0;
+}
+
+
 TURN::TURN(int _size)
 {
+	if (_size <= 0) { throw - 3; }
 	size = _size;
 	mem = new TASK[size];
 	end = size - 1;
@@ -80,17 +96,3 @@ TASK TURN::pop()
 	top = (top + 1) % size;
 	return a;
 }
-
-// CORE;
-
-void CORE::step(TURN t)
-{
-	while (t.isempty == false)
-	{
-		c1.TimeStep();
-		c2.TimeStep();
-		if (c1.GetTime == 0) { c1 = t.pop(); }
-		if (c2.GetTime == 0) { c2 = t.pop(); }
-	}
-}
-
