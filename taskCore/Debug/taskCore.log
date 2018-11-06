@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\anton\documents\visual studio 2015\projects\taskcore\taskcore\class.h(88): error C3867: 'TURN::isempty': non-standard syntax; use '&' to create a pointer to member
+c:\users\anton\documents\visual studio 2015\projects\taskcore\taskcore\class.h(92): error C3867: 'TASK::GetTime': non-standard syntax; use '&' to create a pointer to member
+c:\users\anton\documents\visual studio 2015\projects\taskcore\taskcore\class.h(93): error C3867: 'TASK::GetTime': non-standard syntax; use '&' to create a pointer to member
