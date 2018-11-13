@@ -58,6 +58,7 @@ TURN::TURN()
 {
 	size = 10;
 	mem = new TASK[size];
+	if (mem == NULL) { throw -2; }
 	end = size - 1;
 	top = 0;
 }
@@ -65,9 +66,10 @@ TURN::TURN()
 
 TURN::TURN(int _size)
 {
-	if (_size <= 0) { throw - 3; }
+	if (_size <= 0) { throw -3; }
 	size = _size;
 	mem = new TASK[size];
+	if (mem == NULL) { throw -4; }
 	end = size - 1;
 	top = 0;
 }
@@ -84,14 +86,14 @@ bool TURN::isfull()
 
 void TURN::push(TASK a)
 {
-	if (isfull()) throw - 1;
+	if (isfull()) { throw -5; }
 	end = (end + 1) % size;
 	mem[end] = a;
 }
 
 TASK TURN::pop()
 {
-	if (isempty()) throw - 2;
+	if (isempty()) { throw -6; }
 	TASK a = mem[top];
 	top = (top + 1) % size;
 	return a;
