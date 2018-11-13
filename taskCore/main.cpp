@@ -1,7 +1,6 @@
 #include "class.h"
 
 int const SIZEoch = 10;
-int const countCORE = 2;
 
 int main()
 {
@@ -77,13 +76,6 @@ int main()
 	cout << endl;
 
 
-
-
-
-
-
-
-
 /*	while (SIZEoch == 10)
 	{
 		cout << "t" << c0.GetId() << "  /  " << "t" << c0.GetId() << endl;
@@ -91,7 +83,7 @@ int main()
 		c1.TimeStep();
 		if ((c1.GetTime() == 0)&&(och.isempty() != false)) c1 = och.pop();
 		if ((c2.GetTime() == 0)&&(och.isempty() != false)) c2 = och.pop();
-	}*/
+	}	*/
 
 /*	TASK task[2];
 	//task = new TASK[SIZE];
@@ -109,8 +101,7 @@ int main()
 				task[j].TimeStep();
 			}
 			cout << endl;
-		}
-		
-*/
+		}	*/
+
 	return 0;
 }
